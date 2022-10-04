@@ -7,15 +7,17 @@
  * 
  */
 
-let express = require('express');
-let https = require('https');
-let cookieParser = require('cookie-parser');
-let cors = require('cors');
+const express = require('express');
+const https = require('https');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const path = require('path');
 
 const client_id = '1a0e86d1e6314915b19f43cd1dc69d0d'; // Your client id
 const client_secret = '25de877534ed45af8c31787678e0bba4'; // Your secret
 const redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
-let app = express();
+
+const app = express();
 
 let stateKey = 'spotify_auth_state';
 
@@ -30,7 +32,8 @@ function genreateRandomString(length=16) {
 }
 
 
-app.use(express.static(__dirname + '/public'));
+app.use('/dist', express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(cookieParser());
 
@@ -58,7 +61,7 @@ app.get('/callback', (req, res) => {
   let storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
-    res.redirect('/#?error=state_mismatch');
+    res.redirect('/#error=state_mismatch');
   } else {
     res.clearCookie(stateKey);
     
@@ -87,8 +90,19 @@ app.get('/callback', (req, res) => {
 
       response.on('end', ()=>{
         let body = JSON.parse(result);
-        console.log('body='+result);
+        
+        let params = new URLSearchParams({
+          access_token: body.access_token,
+          refresh_token: body.refresh_token
+        });
+
+        res.redirect('/#' + params.toString());
       });
+
+      response.on('error', (err) => {
+        res.redirect('/#error=' + err.message);
+      });
+
     });
     
     console.log(postData.toString());
@@ -96,6 +110,7 @@ app.get('/callback', (req, res) => {
     postReq.end();
   }
 });
+
 
 console.log('Listening on 8888');
 app.listen(8888);
