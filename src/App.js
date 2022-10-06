@@ -5,12 +5,54 @@ class Login extends React.Component {
   render() {
     return (
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
+        <h1>Login to Spotify</h1>
         <a href="/login" className="btn btn-primary">Log in with Spotify</a>
       </div>
     );
   }
 }
+
+class UserTopTracks extends React.Component {
+  constructor(props) {
+    super(props);
+    let query = new URLSearchParams({
+      limit: 10,
+      offset: 0,
+      time_range: 'short_term'
+    });
+
+    fetch(`https://api.spotify.com/v1/me/top/tracks?${query.toString()}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.props.accessToken
+      }
+    }).then((response) => {
+      console.log(response);
+      return response.json();
+    }).then((data) => {
+      console.log(data);
+      this.setState({response: data});
+    }).catch((reason) => {
+      console.log('error');
+      console.error(reason);
+    });
+
+    this.state = {
+      response: null
+    };
+  }
+
+  render(){
+    let response = this.state.response;
+    
+    return (
+      <div id="user-top-tracks">
+
+      </div>
+    );
+  }
+} 
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -22,10 +64,13 @@ class UserProfile extends React.Component {
         'Authorization': 'Bearer ' + this.props.accessToken
       }
     }).then((response) => {
+      console.log(response);
       return response.json();
     }).then((data) => {
+      console.log(data);
       this.setState({response: data});
     }).catch((reason) => {
+      console.log('error');
       console.error(reason);
     });
 
@@ -39,17 +84,31 @@ class UserProfile extends React.Component {
     if (!response) {
       return (
         <div id="user-profile">
-          <h1>User Profile</h1>
+          <h1>...</h1>
         </div>
       );
     } 
-      
-    return (
-      <div id="user-profile">
-        <h1>Logged in as {response.display_name}</h1>
-        <img className="media-object" width="150" src={response.images[0].url} />
-      </div>
-    );
+
+    if (response.images[0]) {
+      return (
+        <div id="user-profile">
+          <img className="user-image" src={response.images[0].url} alt="profile picture" />
+          <h1>{response.display_name}</h1>
+          <h2>country: {response.country}</h2>
+          <h2>followers: {response.followers.total}</h2>
+        </div>
+      );
+    } else {
+      return (
+        <div id="user-profile">
+          <div className="user-image">.</div>
+          <h1>{response.display_name}</h1>
+          <h2>country: {response.country}</h2>
+          <h2>followers: {response.followers.total}</h2>
+        </div>
+      );
+    }
+
     
   }
 }
@@ -84,8 +143,10 @@ class App extends React.Component {
     if (params.access_token && params.refresh_token) {
       return(
         <div className="App">
-          <UserProfile accessToken={params.access_token} 
-                      refreshToken={params.refresh_token} />
+          <UserProfile  accessToken={params.access_token} 
+                        refreshToken={params.refresh_token} />
+          <UserTopTracks  accessToken={params.access_token} 
+                          refreshToken={params.refresh_token} />
         </div>
       );
   

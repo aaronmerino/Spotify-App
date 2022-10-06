@@ -15,7 +15,7 @@ const path = require('path');
 
 const client_id = '1a0e86d1e6314915b19f43cd1dc69d0d'; // Your client id
 const client_secret = '25de877534ed45af8c31787678e0bba4'; // Your secret
-const redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+const redirect_uri = 'http://localhost:3000/callback'; // Your redirect uri
 
 const app = express();
 
@@ -112,5 +112,5 @@ app.get('/callback', (req, res) => {
 });
 
 
-console.log('Listening on 8888');
-app.listen(8888);
+console.log('Listening on 3000');
+app.listen(3000);
