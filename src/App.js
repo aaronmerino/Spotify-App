@@ -15,6 +15,13 @@ class Login extends React.Component {
 class UserTopTracks extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      response: null
+    };
+  }
+
+  componentDidMount() {
     let query = new URLSearchParams({
       limit: 10,
       offset: 0,
@@ -37,18 +44,25 @@ class UserTopTracks extends React.Component {
       console.log('error');
       console.error(reason);
     });
-
-    this.state = {
-      response: null
-    };
   }
 
   render(){
+    if (!this.state.response) {
+      return (
+        <div id="user-profile">
+          <h1>...</h1>
+        </div>
+      );
+    } 
+
     let response = this.state.response;
-    
+    let tracks = response.items.map((track) => 
+      <div><img src={track.album.images[0].url} /></div>
+    );
+
     return (
       <div id="user-top-tracks">
-
+        {tracks}
       </div>
     );
   }
@@ -57,6 +71,14 @@ class UserTopTracks extends React.Component {
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
+    
+
+    this.state = {
+      response: null
+    };
+  }
+
+  componentDidMount() {
     fetch('https://api.spotify.com/v1/me', {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -73,21 +95,18 @@ class UserProfile extends React.Component {
       console.log('error');
       console.error(reason);
     });
-
-    this.state = {
-      response: null
-    };
   }
 
   render() {
-    let response = this.state.response;
-    if (!response) {
+    if (!this.state.response) {
       return (
         <div id="user-profile">
           <h1>...</h1>
         </div>
       );
     } 
+
+    let response = this.state.response;
 
     if (response.images[0]) {
       return (
