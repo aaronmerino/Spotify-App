@@ -12,6 +12,30 @@ class Login extends React.Component {
   }
 }
 
+class Track extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let track = this.props.track;
+    let artists = track.artists.map( (artist) => artist.name);
+
+    return (
+      <div class="track">
+        <img src={track.album.images[0].url} />
+        <div class="track-info"> 
+          <h2><span class="label">NAME</span> {track.name}</h2>
+          <h2><span class="label">ALBUM</span> <a href={track.external_urls.spotify}>{track.album.name}</a></h2>
+          <h2><span class="label">ARTIST(S)</span> {artists.toString()}</h2>
+          
+        </div>
+
+      </div>
+    );
+  }
+}
+
 class UserTopTracks extends React.Component {
   constructor(props) {
     super(props);
@@ -57,11 +81,12 @@ class UserTopTracks extends React.Component {
 
     let response = this.state.response;
     let tracks = response.items.map((track) => 
-      <div><img src={track.album.images[0].url} /></div>
+      <Track track={track}/>
     );
 
     return (
       <div id="user-top-tracks">
+        <h1>Recent Top Played</h1>
         {tracks}
       </div>
     );
