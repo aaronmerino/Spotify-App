@@ -19,15 +19,15 @@ class Track extends React.Component {
 
   render() {
     let track = this.props.track;
-    let artists = track.artists.map( (artist) => artist.name);
+    let artists = track.artists.map( (artist) => <a href={artist.external_urls.spotify}>{artist.name}</a>);
 
     return (
       <div class="track">
         <img src={track.album.images[0].url} />
         <div class="track-info"> 
-          <h2><span class="label">NAME</span> {track.name}</h2>
-          <h2><span class="label">ALBUM</span> <a href={track.external_urls.spotify}>{track.album.name}</a></h2>
-          <h2><span class="label">ARTIST(S)</span> {artists.toString()}</h2>
+          <h2><span class="label">NAME</span> <a href={track.external_urls.spotify}>{track.name}</a></h2>
+          <h2><span class="label">ALBUM</span> <a href={track.album.external_urls.spotify}>{track.album.name}</a></h2>
+          <h2><span class="label">ARTIST(S)</span> {artists}</h2>
           
         </div>
 

@@ -1,0 +1,29 @@
+a {
+  outline: none;
+  text-decoration: none;
+  border: 1px solid;
+  padding: 2px 2px 2px 2px;
+}
+
+a:link {
+  color: rgb(211, 236, 242);
+}
+
+a:visited {
+  color: rgb(211, 236, 242);;
+}
+
+a:focus {
+  border: 1px dotted;
+  background: #242b5e;
+}
+
+a:hover {
+  border: 1px dotted;
+  background: #242b5e;
+}
+
+a:active {
+  background: #265301;
+  color: #cdfeaa;
+}
