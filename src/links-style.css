@@ -3,6 +3,7 @@ a {
   text-decoration: none;
   border: 1px solid;
   padding: 2px 2px 2px 2px;
+  margin-left: 10px;
 }
 
 a:link {

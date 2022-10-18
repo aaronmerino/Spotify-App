@@ -1,0 +1,12 @@
+#user-top-tracks ul{
+  list-style-type: none;
+}
+
+#user-top-tracks .artists-list {
+  display: inline;
+  padding: 0;
+}
+
+#user-top-tracks .artists-list li{
+  display: inline;
+}
