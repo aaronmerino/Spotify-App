@@ -6,12 +6,11 @@ body {
   background-color: #000e13;
   color:rgb(211, 236, 242);
   font-size: 10px;
-  font-family: Circular,Helvetica,Arial,sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .App {
   margin: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .LoggedIn {
