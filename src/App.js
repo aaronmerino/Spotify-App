@@ -3,7 +3,7 @@ import "./style.css";
 import {UserTopTracks} from "./components/UserTopTracks.js";
 import {UserProfile} from "./components/UserProfile.js";
 import {LoginPage} from "./components/LoginPage.js";
-
+import {UserCurrentPlayback} from "./components/UserCurrentPlayback.js"
 
 class App extends React.Component {
   static getHashParams() {
@@ -33,9 +33,13 @@ class App extends React.Component {
 
     if (params.access_token && params.refresh_token) {
       return(
-        <div className="App">
+        <div className="App LoggedIn">
           <UserProfile  accessToken={params.access_token} 
                         refreshToken={params.refresh_token} />
+                        
+          <UserCurrentPlayback  accessToken={params.access_token} 
+                        refreshToken={params.refresh_token} />
+
           <UserTopTracks  accessToken={params.access_token} 
                           refreshToken={params.refresh_token} />
         </div>

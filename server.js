@@ -43,7 +43,7 @@ app.get('/login', (req, res) => {
   res.cookie(stateKey, state);
 
   // redirect client to request authorization
-  let scope = 'user-read-private user-read-email user-top-read user-read-recently-played'
+  let scope = 'user-read-private user-read-email user-top-read user-read-recently-played user-read-playback-state'
   let params = new URLSearchParams({
     response_type: 'code',
     client_id: client_id,

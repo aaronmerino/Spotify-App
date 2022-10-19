@@ -1,20 +1,3 @@
-#user-top-tracks ul{
-  list-style-type: none;
-}
-
-/* #user-top-tracks ul{
-  list-style-type: none;
-}
-
-#user-top-tracks .artists-list {
-  display: inline;
-  padding: 0;
-}
-
-#user-top-tracks .artists-list li{
-  display: inline;
-}
-
 .track {
   display: grid;
   gap: 1rem;
@@ -33,4 +16,18 @@
 .track .track-info {
   grid-column: 2;
   grid-row: 1;
-} */
+}
+
+.track ul{
+  list-style-type: none;
+}
+
+.track .artists-list {
+  display: inline;
+  padding: 0;
+}
+
+.track .artists-list li{
+  display: inline;
+}
+

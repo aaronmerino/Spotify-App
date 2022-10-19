@@ -1,7 +1,7 @@
 import React from "react";
 import {Track} from "./Track.js";
 
-class UserTopTracks extends React.Component {
+class UserCurrentPlayback extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,14 +10,13 @@ class UserTopTracks extends React.Component {
     };
   }
 
+
   componentDidMount() {
     let query = new URLSearchParams({
-      limit: 10,
-      offset: 0,
-      time_range: 'short_term'
+      additional_types: "track"
     });
 
-    fetch(`https://api.spotify.com/v1/me/top/tracks?${query.toString()}`, {
+    fetch(`https://api.spotify.com/v1/me/player?${query.toString()}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -25,7 +24,11 @@ class UserTopTracks extends React.Component {
       }
     }).then((response) => {
       console.log(response);
-      return response.json();
+      if (response.status == 200) {
+        return response.json();
+      } else {
+        return {noContent: response.status};
+      }
     }).then((data) => {
       console.log(data);
       this.setState({response: data});
@@ -35,27 +38,34 @@ class UserTopTracks extends React.Component {
     });
   }
 
-  render(){
+  render() {
     if (!this.state.response) {
       return (
-        <div id="user-profile">
+        <div id="user-current-playback">
           <h1>...</h1>
         </div>
       );
     } 
 
     let response = this.state.response;
-    let tracks = response.items.map((track, index) => 
-      <li key={index}><Track track={track}/></li>
-    );
+
+    if (response.noContent) {
+      return (
+        <div id="user-current-playback">
+          <h1>Currently Playing</h1>
+          <p>nothing is being played</p>
+        </div>
+      );
+    }
 
     return (
-      <div id="user-top-tracks">
-        <h1>Recent Top Played</h1>
-        <ul>{tracks}</ul>
+      <div id="user-current-playback">
+        <h1>Currently Playing</h1>
+        <Track track={response.item}/>
       </div>
     );
   }
-} 
 
-export {UserTopTracks};
+}
+
+export {UserCurrentPlayback};
