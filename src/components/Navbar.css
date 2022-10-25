@@ -1,10 +1,11 @@
 .Navbar {
-  background-color: #032633;
+  background-color: rgba(0,0,0,0);
 }
 
 .Navbar ol{
   margin: 0 0 0 0;
   list-style-type: none;
+  padding: 0;
 }
 
 .Navbar {
@@ -16,13 +17,13 @@
 }
 
 .Navbar button {
-  background-color: #032633;
+  background-color: rgba(0,0,0,0);
   color: rgb(211, 236, 242);
   outline: none;
   text-decoration: none;
   border: 1px solid;
   padding: 2px 2px 2px 2px;
-  margin: 0.2rem 5px 0.2rem 5px;
+  margin: 0.2rem 5px 0.2rem 0;
 }
 
 .Navbar button:hover {
