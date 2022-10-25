@@ -1,4 +1,4 @@
-.track {
+.artist {
   display: grid;
   gap: 0.2rem;
   grid-template-columns: 1fr 3fr;
@@ -7,28 +7,14 @@
   margin-top: 10px;
 }
 
-.track img {
+.artist img {
   width: 12rem;
   height: 12rem;
   grid-column: 1;
   grid-row: 1 / 4;
 }
 
-.track .track-info {
+.artist .artist-info {
   grid-column: 2;
   grid-row: 1;
 }
-
-.track ul{
-  list-style-type: none;
-}
-
-.track .artists-list {
-  display: inline;
-  padding: 0;
-}
-
-.track .artists-list li{
-  display: inline;
-}
-

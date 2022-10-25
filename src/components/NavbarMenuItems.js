@@ -1,15 +1,15 @@
 import {UserTopTracks} from "./UserTopTracks.js";
-import {UserCurrentPlayback} from "./UserCurrentPlayback.js"
+import {UserTopArtists} from "./UserTopArtists.js"
 
 const MenuItems = [
   {
-    name: "Top Played Tracks",
+    name: "Your Top Played Tracks",
     component: UserTopTracks
   },
 
   {
-    name: "Top Played Albums",
-    component: UserCurrentPlayback
+    name: "Your Top Artists",
+    component: UserTopArtists
   }
 ];
 

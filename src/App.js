@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import {UserTopTracks} from "./components/UserTopTracks.js";
 import {UserProfile} from "./components/UserProfile.js";
 import {LoginPage} from "./components/LoginPage.js";
 import {UserCurrentPlayback} from "./components/UserCurrentPlayback.js";
@@ -17,13 +16,13 @@ class MainContent extends React.Component {
 
     return (
       <div className="MainContent"> 
-      {React.createElement(comp, 
-        {
-          accessToken: this.props.accessToken, 
-          refreshToken: this.props.refreshToken
-        }, 
-        null)
-      } 
+        {React.createElement(comp, 
+          {
+            accessToken: this.props.accessToken, 
+            refreshToken: this.props.refreshToken
+          }, 
+          null)
+        } 
       </div>
     );
   }

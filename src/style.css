@@ -1,6 +1,8 @@
 @import "links-style.css";
 @import "./components/Track.css";
 @import "./components/UserTopTracks.css";
+@import "./components/Artist.css";
+@import "./components/UserTopArtists.css";
 @import "./components/UserProfile.css";
 @import "./components/Navbar.css";
 
