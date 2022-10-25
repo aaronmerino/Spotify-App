@@ -32,30 +32,30 @@ class UserProfile extends React.Component {
   render() {
     if (!this.state.response) {
       return (
-        <div id="user-profile">
+        <div className="user-profile">
           <h1>...</h1>
         </div>
       );
     } 
 
     let response = this.state.response;
-
+    
     if (response.images[0]) {
       return (
-        <div id="user-profile">
-          <img className="user-image" src={response.images[0].url} alt="profile picture" />
-          <h1>{response.display_name}</h1>
-          <h2>country: {response.country}</h2>
-          <h2>followers: {response.followers.total}</h2>
+        <div className="user-profile">
+          <img id="user-image" src={response.images[0].url} alt="profile picture" />
+          <p>{response.display_name}</p>
+          <p>country: {response.country}</p>
+          <p>followers: {response.followers.total}</p>
         </div>
       );
     } else {
       return (
-        <div id="user-profile">
-          <div className="user-image">.</div>
-          <h1>{response.display_name}</h1>
-          <h2>country: {response.country}</h2>
-          <h2>followers: {response.followers.total}</h2>
+        <div className="user-profile">
+          <div id="user-image">.</div>
+          <p>{response.display_name}</p>
+          <p>country: {response.country}</p>
+          <p>followers: {response.followers.total}</p>
         </div>
       );
     }

@@ -1,0 +1,15 @@
+.Navbar {
+  background-color: rgb(5, 107, 107);
+}
+
+.Navbar ul{
+  list-style-type: none;
+}
+
+.Navbar {
+  display: inline;
+}
+
+.Navbar li{
+  display: inline;
+}

@@ -13,24 +13,24 @@ class Track extends React.Component {
       <div className="track">
         <img src={track.album.images[0].url} />
         <div className="track-info"> 
-          <h2>
+          <h3>
             <span className="label">NAME</span> 
             <a href={track.external_urls.spotify}>
               {track.name}
             </a>
-          </h2>
+          </h3>
 
-          <h2>
+          <h3>
             <span className="label">ALBUM</span> 
             <a href={track.album.external_urls.spotify}>
               {track.album.name}
             </a>
-          </h2>
+          </h3>
 
-          <h2>
+          <h3>
             <span className="label">ARTIST(S)</span> 
             <ul className="artists-list">{artists}</ul> 
-          </h2>
+          </h3>
           
         </div>
 

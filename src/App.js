@@ -3,9 +3,40 @@ import "./style.css";
 import {UserTopTracks} from "./components/UserTopTracks.js";
 import {UserProfile} from "./components/UserProfile.js";
 import {LoginPage} from "./components/LoginPage.js";
-import {UserCurrentPlayback} from "./components/UserCurrentPlayback.js"
+import {UserCurrentPlayback} from "./components/UserCurrentPlayback.js";
+import {Navbar} from "./components/Navbar.js";
+import {MenuItems} from "./components/NavbarMenuItems.js";
+
+class MainContent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const comp = MenuItems[this.props.currentMenuItem].component;
+
+    return (
+      <div className="MainContent"> 
+      {React.createElement(comp, 
+        {
+          accessToken: this.props.accessToken, 
+          refreshToken: this.props.refreshToken
+        }, 
+        null)
+      } 
+      </div>
+    );
+  }
+}
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {currentMenuItem: 0};
+    this.handleNavbarClick = this.handleNavbarClick.bind(this);
+
+  }
+
   static getHashParams() {
     let urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
     let access_token = urlParams.get('access_token');
@@ -18,6 +49,10 @@ class App extends React.Component {
     };
 
     return params;
+  }
+
+  handleNavbarClick(i) {
+    this.setState({currentMenuItem: i});
   }
 
   render() {
@@ -34,14 +69,17 @@ class App extends React.Component {
     if (params.access_token && params.refresh_token) {
       return(
         <div className="App LoggedIn">
+          <Navbar onHandleNavbarClick={this.handleNavbarClick} />
+          
           <UserProfile  accessToken={params.access_token} 
                         refreshToken={params.refresh_token} />
                         
           <UserCurrentPlayback  accessToken={params.access_token} 
                         refreshToken={params.refresh_token} />
 
-          <UserTopTracks  accessToken={params.access_token} 
-                          refreshToken={params.refresh_token} />
+          <MainContent  accessToken={params.access_token} 
+                          refreshToken={params.refresh_token} 
+                          currentMenuItem={this.state.currentMenuItem}/>
         </div>
       );
   

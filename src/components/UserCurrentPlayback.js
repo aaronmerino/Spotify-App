@@ -41,7 +41,7 @@ class UserCurrentPlayback extends React.Component {
   render() {
     if (!this.state.response) {
       return (
-        <div id="user-current-playback">
+        <div className="user-current-playback">
           <h1>...</h1>
         </div>
       );
@@ -51,7 +51,7 @@ class UserCurrentPlayback extends React.Component {
 
     if (response.noContent) {
       return (
-        <div id="user-current-playback">
+        <div className="user-current-playback">
           <h1>Currently Playing</h1>
           <p>nothing is being played</p>
         </div>
@@ -59,7 +59,7 @@ class UserCurrentPlayback extends React.Component {
     }
 
     return (
-      <div id="user-current-playback">
+      <div className="user-current-playback">
         <h1>Currently Playing</h1>
         <Track track={response.item}/>
       </div>

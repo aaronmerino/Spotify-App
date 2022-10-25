@@ -38,7 +38,7 @@ class UserTopTracks extends React.Component {
   render(){
     if (!this.state.response) {
       return (
-        <div id="user-profile">
+        <div className="user-profile">
           <h1>...</h1>
         </div>
       );
@@ -50,7 +50,7 @@ class UserTopTracks extends React.Component {
     );
 
     return (
-      <div id="user-top-tracks">
+      <div className="user-top-tracks">
         <h1>Recent Top Played</h1>
         <ul>{tracks}</ul>
       </div>

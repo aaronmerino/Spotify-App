@@ -1,0 +1,10 @@
+.user-profile {
+  height: 250px;
+  width: 1vw;
+}
+
+#user-image {
+  width: 10em;
+  height: 10em;
+  background-color: #ffae00;
+}
