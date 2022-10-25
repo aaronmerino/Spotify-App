@@ -1,8 +1,9 @@
 .Navbar {
-  background-color: rgb(5, 107, 107);
+  background-color: #032633;
 }
 
-.Navbar ul{
+.Navbar ol{
+  margin: 0 0 0 0;
   list-style-type: none;
 }
 
@@ -12,4 +13,19 @@
 
 .Navbar li{
   display: inline;
+}
+
+.Navbar button {
+  background-color: #032633;
+  color: rgb(211, 236, 242);
+  outline: none;
+  text-decoration: none;
+  border: 1px solid;
+  padding: 2px 2px 2px 2px;
+  margin: 0.2rem 5px 0.2rem 5px;
+}
+
+.Navbar button:hover {
+  border: 1px dotted;
+  background: #242b5e;
 }
